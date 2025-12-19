@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arthiccc | Linux Specialist</title>
+    <!-- HTMX Library (Tiny) -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --text: #c9d1d9;
+            --green: #2ea043;
+            --blue: #58a6ff;
+            --dim: #8b949e;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.6;
+        }
+        h1 { color: var(--green); border-bottom: 1px solid var(--dim); padding-bottom: 10px; }
+        .prompt { color: var(--green); }
+        .cmd { color: var(--blue); }
+        
+        /* Navigation Buttons looking like tabs */
+        nav button {
+            background: none;
+            border: 1px solid var(--dim);
+            color: var(--text);
+            padding: 8px 16px;
+            margin-right: 5px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        nav button:hover, nav button.active {
+            border-color: var(--green);
+            color: var(--green);
+        }
+
+        /* The Screen Area */
+        #screen {
+            border: 1px solid var(--dim);
+            padding: 20px;
+            margin-top: 20px;
+            min-height: 300px;
+        }
+        .date { color: var(--dim); font-size: 0.8em; }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div>
+        <span class="prompt">dev@workstation:~$</span> <span class="cmd">./show_portfolio.sh</span>
+    </div>
+
+    <h1>[ Arthiccc.sys ]</h1>
+
+    <!-- Navigation (HTMX Controls) -->
+    <nav>
+        <button hx-get="fragments/about.html" hx-target="#screen">/about</button>
+        <button hx-get="fragments/projects.html" hx-target="#screen">/projects</button>
+        <button hx-get="fragments/contact.html" hx-target="#screen">/contact</button>
+    </nav>
+
+    <!-- Content Area (Swapped by HTMX) -->
+    <div id="screen" hx-get="fragments/about.html" hx-trigger="load">
+        <span class="dim">Initializing system...</span>
+    </div>
+
+</body>
+</html>
